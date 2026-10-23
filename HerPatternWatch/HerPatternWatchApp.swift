@@ -126,8 +126,14 @@ struct WatchRootView: View {
 private struct BeeImportsWatchView: View {
     @ObservedObject var model: WatchModel
     @State private var beeToken = ""
-    @State private var confirmImport = false
-    @State private var confirmSendPlan = false
+    @State private var confirmation: BeeConfirmation?
+
+    private var isConfirming: Binding<Bool> {
+        Binding(
+            get: { confirmation != nil },
+            set: { if !$0 { confirmation = nil } }
+        )
+    }
 
     var body: some View {
         ScrollView {
@@ -170,7 +176,7 @@ private struct BeeImportsWatchView: View {
                             }
                             .buttonStyle(.plain)
                         }
-                        Button("Review import to HerPattern") { confirmImport = true }
+                        Button("Review import to HerPattern") { confirmation = .importTasks }
                             .disabled(model.selectedBeeTaskIDs.isEmpty || model.beeLoading)
                             .tint(HPColors.violet)
                     }
@@ -181,7 +187,7 @@ private struct BeeImportsWatchView: View {
                         Text("Bee will receive:").font(.caption2).foregroundStyle(.secondary)
                         Text(reviewed).font(.caption)
                         Button("Edit plan") { model.beeReviewedPlan = nil }
-                        Button("Confirm and send to Bee") { confirmSendPlan = true }
+                        Button("Confirm and send to Bee") { confirmation = .sendPlan }
                             .tint(HPColors.violet)
                     } else {
                         TextField("Write a task", text: $model.beeDraft, axis: .vertical)
@@ -201,10 +207,60 @@ private struct BeeImportsWatchView: View {
                     .font(.caption2).foregroundStyle(.secondary)
                 Text(model.beeObservationSummary)
                     .font(.caption2).foregroundStyle(.secondary)
-                Button("Refresh HerPattern imports") {
+                Button("Refresh from HerPattern API") {
                     Task { await model.refreshBeeImports() }
                 }
                 .disabled(model.loading)
+
+                Divider()
+                Text("Bee conversation to daily note").font(.caption.bold())
+                Text("Choose your own statement, write a short summary, and review before adding it to today's HerPattern log. Raw conversation text is not uploaded.")
+                    .font(.system(size: 9)).foregroundStyle(.secondary)
+                Button("Load Bee conversations") {
+                    Task { await model.loadBeeConversations() }
+                }
+                .disabled(model.beeLoading || !model.beeConnected)
+                ForEach(model.beeConversations) { conversation in
+                    Button(conversation.title) {
+                        Task { await model.loadBeeUtterances(conversationID: conversation.id) }
+                    }
+                    .font(.caption2)
+                    .disabled(model.beeLoading)
+                }
+                ForEach(model.beeUtterances) { utterance in
+                    Button {
+                        model.selectBeeUtterance(utterance)
+                    } label: {
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text(utterance.speaker.uppercased())
+                                .font(.system(size: 8, weight: .semibold))
+                                .foregroundStyle(HPColors.lavender)
+                            Text(utterance.text).font(.caption2).lineLimit(3)
+                        }
+                    }
+                    .buttonStyle(.plain)
+                }
+                if let selected = model.selectedBeeUtterance {
+                    Text("Selected \(selected.speaker)'s statement")
+                        .font(.system(size: 9)).foregroundStyle(.secondary)
+                    Toggle("This was my statement", isOn: $model.beeOwnStatement)
+                        .font(.caption2)
+                        .disabled(model.beeNotePreview != nil)
+                    TextField("Write your short HerPattern note", text: $model.beeNoteDraft, axis: .vertical)
+                        .lineLimit(2...4)
+                        .disabled(model.beeNotePreview != nil)
+                    if let preview = model.beeNotePreview {
+                        Text("Preview: \(String(describing: preview["summary"] ?? ""))")
+                            .font(.caption2)
+                        Button("Review and add this note") { confirmation = .saveNote }
+                    } else {
+                        Button("Preview daily note") { Task { await model.prepareBeeDailyNote() } }
+                            .disabled(!model.beeOwnStatement
+                                      || model.beeNoteDraft.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+                                      || model.beeNoteDraft.count > 240
+                                      || model.beeLoading)
+                    }
+                }
                 if model.loading || model.beeLoading { ProgressView() }
                 if let status = model.beeStatus {
                     Text(status).font(.caption2).foregroundStyle(.orange)
@@ -217,24 +273,61 @@ private struct BeeImportsWatchView: View {
         }
         .navigationTitle("Bee")
         .confirmationDialog(
-            "Import \(model.selectedBeeTaskIDs.count) selected Bee tasks into your HerPattern account?",
-            isPresented: $confirmImport
+            confirmationTitle,
+            isPresented: isConfirming
         ) {
-            Button("Confirm import") { Task { await model.importSelectedBeeTasks() } }
-            Button("Cancel", role: .cancel) {}
+            switch confirmation {
+            case .importTasks:
+                Button("Confirm import") {
+                    confirmation = nil
+                    Task { await model.importSelectedBeeTasks() }
+                }
+            case .sendPlan:
+                Button("Confirm and send") {
+                    confirmation = nil
+                    Task { await model.sendReviewedBeePlan() }
+                }
+            case .saveNote:
+                Button("Confirm and add to daily log") {
+                    confirmation = nil
+                    Task { await model.confirmBeeDailyNote() }
+                }
+            case nil:
+                EmptyView()
+            }
+            Button("Cancel", role: .cancel) { confirmation = nil }
         } message: {
-            Text("Only the selected task text and IDs are copied. Bee tasks are context, not health measurements.")
-        }
-        .confirmationDialog(
-            "Send this exact plan to Bee?",
-            isPresented: $confirmSendPlan
-        ) {
-            Button("Confirm and send") { Task { await model.sendReviewedBeePlan() } }
-            Button("Cancel", role: .cancel) {}
-        } message: {
-            Text(model.beeReviewedPlan ?? "")
+            switch confirmation {
+            case .importTasks:
+                Text("Only the selected task text and IDs are copied. Bee tasks are context, not health measurements.")
+            case .sendPlan:
+                Text(model.beeReviewedPlan ?? "")
+            case .saveNote:
+                Text(model.beeNoteDraft)
+            case nil:
+                EmptyView()
+            }
         }
     }
+
+    private var confirmationTitle: String {
+        switch confirmation {
+        case .importTasks:
+            "Import \(model.selectedBeeTaskIDs.count) selected Bee tasks into HerPattern?"
+        case .sendPlan:
+            "Send this exact plan to Bee?"
+        case .saveNote:
+            "Add this note to today's HerPattern daily log?"
+        case nil:
+            ""
+        }
+    }
+}
+
+private enum BeeConfirmation {
+    case importTasks
+    case sendPlan
+    case saveNote
 }
 
 

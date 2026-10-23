@@ -12,7 +12,10 @@ asks a brief pain question on changed patterns and can submit a minimal
 continuity record. Bee connects directly from the watch using the user's Bee
 Developer Mode token, stored in the watch-only ThisDeviceOnly Keychain. Users
 can review and select tasks to import into HerPattern and separately review and
-confirm a written plan before sending it to Bee. No transcripts are imported.
+confirm a written plan before sending it to Bee. Users may select one of their
+own Bee conversation statements, write a short note, and separately preview and
+confirm adding it to the HerPattern daily log; raw conversation text is not
+uploaded. No Bee journal endpoints are assumed.
 All wearable uploads are **OFF by default** until the patient opts in; their
 offline outbox is encrypted in ThisDeviceOnly Keychain.
 

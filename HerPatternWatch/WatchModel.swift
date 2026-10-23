@@ -29,6 +29,12 @@ struct BeeImportSummary: Decodable, Identifiable {
     @Published var beeConnected = false
     @Published var beeTasks: [BeeWatchTask] = []
     @Published var selectedBeeTaskIDs: Set<String> = []
+    @Published var beeConversations: [BeeWatchConversation] = []
+    @Published var beeUtterances: [BeeWatchUtterance] = []
+    @Published var selectedBeeUtterance: BeeWatchUtterance?
+    @Published var beeOwnStatement = false
+    @Published var beeNoteDraft = ""
+    @Published var beeNotePreview: [String: Any]?
     @Published var beeDraft = ""
     @Published var beeReviewedPlan: String?
     @Published var beeStatus: String?
@@ -94,6 +100,90 @@ struct BeeImportSummary: Decodable, Identifiable {
     func toggleBeeTask(_ id: String) {
         if selectedBeeTaskIDs.contains(id) { selectedBeeTaskIDs.remove(id) }
         else { selectedBeeTaskIDs.insert(id) }
+    }
+
+    func loadBeeConversations() async {
+        beeLoading = true
+        beeStatus = nil
+        beeConversations = []
+        beeUtterances = []
+        selectedBeeUtterance = nil
+        defer { beeLoading = false }
+        do {
+            beeConversations = try await BeeWatchAPI.shared.conversations()
+            if beeConversations.isEmpty { beeStatus = "No Bee conversations were returned." }
+        } catch { beeStatus = error.localizedDescription }
+    }
+
+    func loadBeeUtterances(conversationID: String) async {
+        beeLoading = true
+        beeStatus = nil
+        beeUtterances = []
+        selectedBeeUtterance = nil
+        beeNoteDraft = ""
+        beeOwnStatement = false
+        beeNotePreview = nil
+        defer { beeLoading = false }
+        do { beeUtterances = try await BeeWatchAPI.shared.utterances(conversationID: conversationID) }
+        catch { beeStatus = error.localizedDescription }
+    }
+
+    func selectBeeUtterance(_ utterance: BeeWatchUtterance) {
+        selectedBeeUtterance = utterance
+        beeNoteDraft = ""
+        beeOwnStatement = false
+        beeNotePreview = nil
+    }
+
+    func prepareBeeDailyNote() async {
+        let text = beeNoteDraft.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard beeOwnStatement, selectedBeeUtterance != nil,
+              !text.isEmpty, text.count <= 240, !currentDay.isEmpty else {
+            beeStatus = "Confirm this is your statement and enter a short note (up to 240 characters)."
+            return
+        }
+        beeLoading = true
+        beeStatus = nil
+        defer { beeLoading = false }
+        do {
+            let result = try await WatchAPI.shared.request(
+                "/assistant/actions",
+                method: "POST",
+                payload: [
+                    "action": "save_note",
+                    "args": ["date": currentDay, "text": text],
+                    "confirm": false
+                ]
+            )
+            guard let data = result as? [String: Any],
+                  let preview = data["preview"] as? [String: Any],
+                  !String(describing: preview["summary"] ?? "").isEmpty else {
+                throw WatchAPIError(message: "HerPattern could not prepare a daily-note preview.")
+            }
+            beeNotePreview = preview
+        } catch { beeStatus = error.localizedDescription }
+    }
+
+    func confirmBeeDailyNote() async {
+        guard let preview = beeNotePreview, let args = preview["args"] else { return }
+        beeLoading = true
+        beeStatus = nil
+        defer { beeLoading = false }
+        do {
+            let result = try await WatchAPI.shared.request(
+                "/assistant/actions",
+                method: "POST",
+                payload: ["action": "save_note", "args": args, "confirm": true]
+            )
+            guard let data = result as? [String: Any], data["saved"] as? Bool == true else {
+                throw WatchAPIError(message: "HerPattern did not confirm that the note was saved.")
+            }
+            beeNotePreview = nil
+            beeNoteDraft = ""
+            selectedBeeUtterance = nil
+            beeOwnStatement = false
+            beeStatus = "Your note was added to today's HerPattern daily log."
+        } catch { beeStatus = error.localizedDescription }
     }
 
     func importSelectedBeeTasks() async {

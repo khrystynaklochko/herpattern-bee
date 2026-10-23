@@ -27,6 +27,13 @@ class BeeWatchContract(unittest.TestCase):
         self.assertIn("Review plan", view)
         self.assertIn("Confirm and send", view)
         self.assertIn("Disconnect Bee", view)
+        self.assertIn('"/v1/conversations"', client)
+        self.assertIn('"/v1/conversations/" + conversationID', client)
+        self.assertIn('"action": "save_note"', model)
+        self.assertIn('"confirm": false', model)
+        self.assertIn('"confirm": true', model)
+        self.assertIn("This was my statement", view)
+        self.assertIn("Confirm and add to daily log", view)
 
 
 if __name__ == "__main__":
