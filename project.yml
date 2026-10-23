@@ -1,0 +1,23 @@
+name: HerPatternWatchStandalone
+options:
+  createIntermediateGroups: true
+  developmentLanguage: en
+settings:
+  base:
+    SWIFT_VERSION: "5.10"
+    CODE_SIGN_STYLE: Automatic
+targets:
+  HerPatternWatch:
+    type: application
+    platform: watchOS
+    deploymentTarget: "10.0"
+    sources:
+      - path: HerPatternWatch
+    settings:
+      base:
+        CODE_SIGN_ENTITLEMENTS: HerPatternWatch/HerPatternWatch.entitlements
+        PRODUCT_BUNDLE_IDENTIFIER: tech.immersion.herpattern.watch
+        GENERATE_INFOPLIST_FILE: "NO"
+        INFOPLIST_FILE: HerPatternWatch/Info.plist
+        TARGETED_DEVICE_FAMILY: "4"
+        ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS: "NO"

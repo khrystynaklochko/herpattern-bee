@@ -1,0 +1,315 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3075D315A5F37655F43D3B2F /* PocketSmallAI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40714ECFB3439FB474460875 /* PocketSmallAI.swift */; };
+		39043FD0620CF17660A69C29 /* HerPatternWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874D6ECABC5E0499D805FA8F /* HerPatternWatchApp.swift */; };
+		3D9E6B041DD7F6259C92051E /* WatchEventOutbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBEA5D1DA69B411AF7BF29D /* WatchEventOutbox.swift */; };
+		701299C4DDD8DBC1C1788E02 /* BeeWatchAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C9FFFE11D8FBA0B15CA388 /* BeeWatchAPI.swift */; };
+		7986BC7097D1916966852AE3 /* WatchHealthReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7BF40892F825BEDBA6E137 /* WatchHealthReader.swift */; };
+		B7CAB1B6F2AB1212B095A2D3 /* WatchSecureStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2B7F34566D4215AFAF050A /* WatchSecureStore.swift */; };
+		CCD8ECFACBC15E1B57FA1BFA /* WatchAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EEE77E36D13A541C7119FC /* WatchAPI.swift */; };
+		E36062A78AFF6A33B5D62EB0 /* WatchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E021D68D63FA4D38F25C71 /* WatchModel.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		40714ECFB3439FB474460875 /* PocketSmallAI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PocketSmallAI.swift; sourceTree = "<group>"; };
+		40E021D68D63FA4D38F25C71 /* WatchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchModel.swift; sourceTree = "<group>"; };
+		4C2B7F34566D4215AFAF050A /* WatchSecureStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchSecureStore.swift; sourceTree = "<group>"; };
+		56C9FFFE11D8FBA0B15CA388 /* BeeWatchAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeeWatchAPI.swift; sourceTree = "<group>"; };
+		626F69BAC4B11A55387B2266 /* HerPatternWatch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HerPatternWatch.entitlements; sourceTree = "<group>"; };
+		6E7BF40892F825BEDBA6E137 /* WatchHealthReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchHealthReader.swift; sourceTree = "<group>"; };
+		874D6ECABC5E0499D805FA8F /* HerPatternWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HerPatternWatchApp.swift; sourceTree = "<group>"; };
+		93360C6FCB4B28C6A3A05C9B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		ADFDA78E0F506C0FFB5FA724 /* HerPatternWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HerPatternWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C4EEE77E36D13A541C7119FC /* WatchAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchAPI.swift; sourceTree = "<group>"; };
+		FBBEA5D1DA69B411AF7BF29D /* WatchEventOutbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchEventOutbox.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		41D5A19F1888B36A1F674DD9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				ADFDA78E0F506C0FFB5FA724 /* HerPatternWatch.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6FAF4413B18B5D8CA61B02E6 = {
+			isa = PBXGroup;
+			children = (
+				A5083918A90D155A7DE455C8 /* HerPatternWatch */,
+				41D5A19F1888B36A1F674DD9 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A5083918A90D155A7DE455C8 /* HerPatternWatch */ = {
+			isa = PBXGroup;
+			children = (
+				56C9FFFE11D8FBA0B15CA388 /* BeeWatchAPI.swift */,
+				626F69BAC4B11A55387B2266 /* HerPatternWatch.entitlements */,
+				874D6ECABC5E0499D805FA8F /* HerPatternWatchApp.swift */,
+				93360C6FCB4B28C6A3A05C9B /* Info.plist */,
+				40714ECFB3439FB474460875 /* PocketSmallAI.swift */,
+				C4EEE77E36D13A541C7119FC /* WatchAPI.swift */,
+				FBBEA5D1DA69B411AF7BF29D /* WatchEventOutbox.swift */,
+				6E7BF40892F825BEDBA6E137 /* WatchHealthReader.swift */,
+				40E021D68D63FA4D38F25C71 /* WatchModel.swift */,
+				4C2B7F34566D4215AFAF050A /* WatchSecureStore.swift */,
+			);
+			path = HerPatternWatch;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		810700ACEBF4DBE6828318CB /* HerPatternWatch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EAFFE0A678DABB73E17F69E6 /* Build configuration list for PBXNativeTarget "HerPatternWatch" */;
+			buildPhases = (
+				B91EF5CE0288A90D0582C2B9 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HerPatternWatch;
+			packageProductDependencies = (
+			);
+			productName = HerPatternWatch;
+			productReference = ADFDA78E0F506C0FFB5FA724 /* HerPatternWatch.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8ED9C4436EB141CF68B0DF14 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					810700ACEBF4DBE6828318CB = {
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 4248BFB01932F2BDF57C2838 /* Build configuration list for PBXProject "HerPatternWatchStandalone" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 6FAF4413B18B5D8CA61B02E6;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 41D5A19F1888B36A1F674DD9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				810700ACEBF4DBE6828318CB /* HerPatternWatch */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B91EF5CE0288A90D0582C2B9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				701299C4DDD8DBC1C1788E02 /* BeeWatchAPI.swift in Sources */,
+				39043FD0620CF17660A69C29 /* HerPatternWatchApp.swift in Sources */,
+				3075D315A5F37655F43D3B2F /* PocketSmallAI.swift in Sources */,
+				CCD8ECFACBC15E1B57FA1BFA /* WatchAPI.swift in Sources */,
+				3D9E6B041DD7F6259C92051E /* WatchEventOutbox.swift in Sources */,
+				7986BC7097D1916966852AE3 /* WatchHealthReader.swift in Sources */,
+				E36062A78AFF6A33B5D62EB0 /* WatchModel.swift in Sources */,
+				B7CAB1B6F2AB1212B095A2D3 /* WatchSecureStore.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		BD278E5A4D9342DF6EA2C55D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.10;
+			};
+			name = Debug;
+		};
+		BDA6AEF8DDB7C855FF57452C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = NO;
+				CODE_SIGN_ENTITLEMENTS = HerPatternWatch/HerPatternWatch.entitlements;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = HerPatternWatch/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = tech.immersion.herpattern.watch;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Debug;
+		};
+		C6D1E18B712CE004C10C08A2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.10;
+			};
+			name = Release;
+		};
+		D1138BD0ADFF1FDBA5748F87 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = NO;
+				CODE_SIGN_ENTITLEMENTS = HerPatternWatch/HerPatternWatch.entitlements;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = HerPatternWatch/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = tech.immersion.herpattern.watch;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4248BFB01932F2BDF57C2838 /* Build configuration list for PBXProject "HerPatternWatchStandalone" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BD278E5A4D9342DF6EA2C55D /* Debug */,
+				C6D1E18B712CE004C10C08A2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		EAFFE0A678DABB73E17F69E6 /* Build configuration list for PBXNativeTarget "HerPatternWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BDA6AEF8DDB7C855FF57452C /* Debug */,
+				D1138BD0ADFF1FDBA5748F87 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8ED9C4436EB141CF68B0DF14 /* Project object */;
+}
